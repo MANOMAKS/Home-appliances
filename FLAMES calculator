@@ -1,0 +1,64 @@
+def flames(name1, name2):
+  name1=name1.replace(" ","").upper()
+  name2=name2.replace(" ","").upper()
+
+  def rcc(list, value)M:
+  #remove common characrter - rcc
+    for i in range(len(list)):
+      if list[i]==value:
+        del list[i]
+        return
+
+  name1_list=list(name1)
+  name2_list=list(name2)
+
+  for char in name1[:]:
+    if char in name2_list:
+      rcc(name1_list,char)
+      rcc(name2_list,char)
+
+  unique_count=len(name1_list)+len(name2_list)
+
+  flames="FLAMES"
+  relationship={"F":"Friends",
+                "L":"Love",
+                "A":"Afftection",
+                "M":"Marriage",
+                "E":"Enemies",
+                "S":"Soulmates"}
+
+  while len(flames)>1:
+    index=unique_count%len(flames)-1
+
+    if index>=0:
+      flames[index+1:]+flames[:index]
+    else:
+      flames=flames[:-1]
+  return relationship[flames]
+
+def main():
+  print("Welcome to FLAMES!")
+
+  while True:
+    print("\n options:")
+    print("1.Play FLAMES")
+    print("2.Exit")
+
+    choice=input("Enter the choice: 1 or 2" ).strip()
+
+    if choice=="1":
+      name1=input("Enter first name: ").strip()
+      name2=input("enter second name: ").strip()
+
+      result=flames(name1, name2)
+
+      print(f"The FLAMES relationship between {name1} and {name2} is {result}")
+
+    elif choice=="2":
+      print("Thank you for playing the game created by MAK!")
+      break
+
+    else:
+      print("Invalid choice, enter your choice either 1 or 2")
+
+main()
